@@ -18,9 +18,8 @@ public class User extends Model {
 
     @Required
     public String name;
+
     public Long stand_id;
-
-
 
     public static Finder<Long,User>find = new Finder(Long.class, User.class);
 
@@ -31,18 +30,21 @@ public class User extends Model {
     return Json.toJson(users);
     }
 
-    public static void create(Forms.newUser newUser) {
-    User user = new User();
-    user.id = newUser.id;
-    user.name = newUser.name;
-    user.save();
+    public static User create(String name,Long id) {
+        User user = new User();
+        user.name = name ;
+        user.stand_id = id ;
+        user.save();
 
+        return user;
+
+        }
+
+    public static int secletnumber(int stand_id) {
+    	int number = find.where().eq("stand_id",stand_id). findRowCount();
+    	return number;
     }
-
-
-
-}
-
+ }
 
 
 

@@ -4,7 +4,7 @@ form: Form[Forms.StandForm])
 
 @main("立候補") {
   <h1>立候補</h1>
-  <form action="@routes.Application.addStand()" method="post">
+  <form action="@routes.Application.newUser()" method="post">
     <p>立候氏名</p>
     <input type="text" name="standname">
 
@@ -18,3 +18,4 @@ form: Form[Forms.StandForm])
     <button type="submit">作成</button>
   </form>
 }
+

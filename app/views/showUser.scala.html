@@ -1,19 +1,26 @@
-@(users: com.fasterxml.jackson.databind.JsonNode)
+@(users: com.fasterxml.jackson.databind.JsonNode,
+stands: com.fasterxml.jackson.databind.JsonNode,
+userForm: Form[Forms.newUser])
 
-@main("投票システム"){
+ @main("投票システム"){
 
-<h1>投票一覧</h1>
+    <h1>投票一覧</h1>
+    <p>投票数：</p>
 
+    <p>立候氏名：@stands.findValuesAsText("standname")</p>
+    <p>立候役職：@stands.findValuesAsText("post")</p>
+   <table>
+   <tr>
 
-@for(user <- users.findValuesAsText("name").toArray()) {
-<table>
-<tr>
-  <th>投票者氏名</th>
-  <li>
-  @user
-  </li>
-  </tr>
+    <p>投票者：@users.findValuesAsText("name")</p>
+    <p>投票対象：
+    @for(node <- stands.elements()){
+	  <p>@node.findValuesAsText("standname")</p>
+	  }
+	</p>
+     </p>
+    </tr>
   </table>
 </div>
- }
+
 }
